@@ -30,6 +30,8 @@ for i in lst2:
     lst4.append(lst5)
 
 print(lst)
+
+
 #print("transform: " + str(obj['transform']))
 
 

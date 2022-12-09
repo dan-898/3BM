@@ -34,9 +34,9 @@ def ThreeD(Tara, Jony, Tala):
      lst = lst1+lst2
 
      return lst
-col1 = 3
-col2 = 3
-row = 3
+col1 = 1
+col2 = 1
+row = 1
 
 pprint.pprint(ThreeD(col1, col2, row))
 
