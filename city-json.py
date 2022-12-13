@@ -14,6 +14,7 @@ for i in a:
     lst1.append(a)
 
 
+
 print(a)
 
 
