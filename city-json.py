@@ -1,11 +1,19 @@
+
 import json
-import pprint
-with open('twocube.city.json', 'r') as city:
-    data = city.read()
+
+
+with open('twocube.city.json', 'r') as f:
+    data = f.read()
     file = json.loads(data)
-    vertices = file[ 'CityObjects']
+
+a = data['CityObjects']['onebuilding']['geometry'][0]['boundaries']
 
 
+# for i in a:
+#     lst1=[]
+#     lst1.append(a)
 
 
-    pprint.pprint(vertices)
+print(a)
+
+
