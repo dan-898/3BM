@@ -1,30 +1,42 @@
+# import pprint
+#
+# lst2 = [[0, 1, 1], [1, 2, 3], [4, 5, 6]]
+# lst2.pop(1)
+# lst3 = ["ali", "baba", "forty", "thieves", "maarten", "jonathan", "3BM"]
+#
+# lst4 = []
+# for i in lst2:
+#     lst5 = []
+#     for j in i:
+#         lst5.append(lst3[j])
+#     lst4.append(lst5)
+#
+# pprint.pprint(lst4)
+
 
 import pprint
-lst = [0,1,1,1]
-lstemp = [0,1,1,1]
-lstemp.append("test")
 
-lst.append("test")
+lst10 = [[[0, 1, 1], [1, 2, 3], [4, 5, 6]], [[0, 2, 3], [4, 4, 3], [3, 2, 5]]]
+lst11 = ["ali", "baba", "forty", "thieves", "maarten", "jonathan", "3BM"]
 
-lst.remove(1)
+# lst12 = []
 
-lst.count(1)
+for i in lst10:
+    for j in i:
+        lst12 = [j]
 
-lst2 = [[0,1,1],[1,2,3],[4,5,6]]
-
-
-lst3 = ["ali", "baba","forty","thieves","maarten","jonathan","3BM"]
-lst2.append(lst3)
+        for k in i:
+            lst13 = []
+            lst13.append(lst11)
 
 
-lst4 = ["Found","the","gold"]
-lst.insert(2,lst4)
 
 
-for i in lst2:
-    lst5 = []
-for k in lst5:
-    lst5.append(lst2)
+print(lst13)
 
 
-pprint.pprint(i)
+
+
+
+# pprint.pprint(lst12)
+

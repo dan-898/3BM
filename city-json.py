@@ -19,10 +19,10 @@ for index, i in enumerate(a):
 
 sys.exit()
 
-
-for i in a:
-    lst1=[]
-    lst1.append(a)
+#
+# for i in a:
+#     lst1=[]
+#     lst1.append(a)
 
 
 
