@@ -1,17 +1,11 @@
 import json
 
-with open('Rotter.json', "r") as f:
+with open('twocube.city.json', "r") as f:
     data = json.load(f)
 
-a = data['transform']['scale']
-b = data['transform']['translate']
+a = data['CityObjects']['onebuilding']['geometry'][0]['boundaries']
 
-
-for i in a, b:
-    lst1=[]
+lst1 = []
+for i in a:
     lst1.append(a)
-    lst1.append(b)
-
-
-
-print(i)
+print(lst1)

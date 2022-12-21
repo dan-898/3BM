@@ -1,53 +1,28 @@
-import copy
-import numpy as np
-import open3d as o3d
+import json
+import FreeCAD
+import MeshPart
 
-if __name__ == "__main__":
+# Load the JSON file
+with open("C:/Users/angza/Desktop/twocube.city.json", "r") as f:
+    data = json.load(f)
 
-    print("Testing mesh in open3d ...")
-    mesh = o3d.io.read_triangle_mesh("twocube.city.json")
-    print(mesh)
-    print(np.asarray(mesh.vertices))
-    print(np.asarray(mesh.triangles))
-    print("")
+# Extract the model data from the JSON file
+model_data = data["CityObjects"]
 
-    print("Try to render a mesh with normals (exist: " +
-          str(mesh.has_vertex_normals()) + ") and colors (exist: " +
-          str(mesh.has_vertex_colors()) + ")")
-    o3d.visualization.draw_geometries([mesh])
-    print("A mesh with no normals and no colors does not seem good.")
+# Create a new document in FreeCAD
+doc = FreeCAD.newDocument()
 
-    print("Computing normal and rendering it.")
-    mesh.compute_vertex_normals()
-    print(np.asarray(mesh.triangle_normals))
-    o3d.visualization.draw_geometries([mesh])
+# Create the model in FreeCAD
+obj = doc.addObject("transform::scale", "CityObjects")
+obj.Mesh = MeshPart.Mesh()
 
-    print("We make a partial mesh of only the first half triangles.")
-    mesh1 = copy.deepcopy(mesh)
-    mesh1.triangles = o3d.utility.Vector3iVector(
-        np.asarray(mesh1.triangles)[:len(mesh1.triangles) // 2, :])
-    mesh1.triangle_normals = o3d.utility.Vector3dVector(
-        np.asarray(mesh1.triangle_normals)[:len(mesh1.triangle_normals) //
-                                           2, :])
-    print(mesh1.triangles)
-    o3d.visualization.draw_geometries([mesh1])
+# Add the vertices to the mesh
+for vertex in model_data["vertices"]:
+    obj.Mesh.addVertex(vertex[0], vertex[1], vertex[2])
 
-    print("Painting the mesh")
-    mesh1.paint_uniform_color([1, 0.706, 0])
-    o3d.visualization.draw_geometries([mesh1])
+# Add the faces to the mesh
+for face in model_data["faces"]:
+    obj.Mesh.addFace(face)
 
-    print("Testing mesh in open3d ...")
-    mesh = o3d.io.read_triangle_mesh("twocube.city.json")
-    print(mesh)
-    print(np.asarray(mesh.vertices))
-    print(np.asarray(mesh.triangles))
-    print("")
-    print("Try to render a mesh with normals (exist: " +
-          str(mesh.has_vertex_normals()) + ") and colors (exist: " +
-          str(mesh.has_vertex_colors()) + ")")
-    o3d.visualization.draw_geometries([mesh])
-    print("A mesh with no normals and no colors does not seem good.")
-    print("Computing normal and rendering it.")
-    mesh.compute_vertex_normals()
-    print(np.asarray(mesh.triangle_normals))
-    o3d.visualization.draw_geometries([mesh])
+# Update the document
+doc.recompute()
