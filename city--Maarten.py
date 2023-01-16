@@ -3,7 +3,7 @@ import json
 with open('twocube.city.json', "r") as f:
     data = json.load(f)
     dataCityObjects = data['CityObjects']
-a = data['CityObjects']
+a = data['CityObjects']['onebuilding']['geometry'][0]['boundaries']
 b = data['transform']['scale']
 c = data['transform']['translate']
 
@@ -30,3 +30,4 @@ for i in dataCityObjects[i]['geometry'][lod]['boundaries']:
             boundaries.append(mesh)
 
 print(boundaries)
+
