@@ -13,7 +13,7 @@ for i in dataCityObjects:
 
 lod = 0  # 0=1, 1=2
 
-meshList = []
+
 for i in dataCityObjects[i]['geometry'][lod]['boundaries']:
     boundaries = []
     for j in i:  # in the boundarie
